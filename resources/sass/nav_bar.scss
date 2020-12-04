@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 10%;
+  background-color: #051428;
+  box-shadow:  0 4px 12px 0 rgba(0, 0, 0, 0.78);
+  & ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+
+    & > li {
+      list-style: none;
+      color: antiquewhite;
+      margin-right: 5rem;
+
+      a {
+        color: antiquewhite;
+        text-decoration: none;
+
+        &.active {
+          color: tomato;
+        }
+
+        &:hover {
+          color: tomato;
+        }
+      }
+    }
+  }
+}
+

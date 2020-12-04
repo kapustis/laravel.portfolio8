@@ -1,0 +1,311 @@
+/* === color === */
+$default-color: #32B9B5;
+$active: #F79D2D;
+$hover: #C2390D;
+$bronze: #995f25;
+$platinum: #E5E4E2;
+/* === color === */
+
+a {
+  color: $default-color;
+
+  &:hover, &:focus, &:active {
+    color: $default-color;
+  }
+}
+
+footer a.text-link:hover, strike, .post-meta span a:hover, footer a.text-link {
+  color: $default-color;
+}
+
+ul {
+  &.meta-post li a:hover, &.cat li a:hover, &.recent li h6 a:hover {
+    color: $default-color;
+  }
+
+  &.portfolio-categ li {
+    &.active a {
+      color: $default-color;
+
+      &:hover {
+        color: $default-color;
+      }
+    }
+
+    a:hover {
+      color: $default-color;
+    }
+  }
+
+  &.related-post li h4 a:hover {
+    color: $default-color;
+  }
+}
+
+span.highlight, article .post-heading h3 a:hover {
+  color: $default-color;
+}
+
+.navbar .nav > {
+  .active > a {
+    color: $default-color;
+
+    &:hover {
+      color: $default-color;
+    }
+  }
+
+  li > a {
+    &:hover, &:focus {
+      color: $default-color;
+    }
+  }
+
+  .active > a:focus {
+    color: $default-color;
+  }
+}
+
+.navbar-brand span {
+  color: $default-color;
+}
+
+header .nav li {
+  a {
+    &:hover, &:focus {
+      color: $default-color;
+    }
+  }
+
+  &.active a {
+    color: $default-color;
+
+    &:hover {
+      color: $default-color;
+    }
+  }
+
+  a.dropdown-toggle {
+    &:hover, &:focus {
+      color: $default-color;
+    }
+  }
+
+  &.active ul.dropdown-menu li {
+    a:hover, &.active a {
+      color: $default-color;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > {
+  .active > a {
+    color: $default-color;
+
+    &:hover, &:focus {
+      color: $default-color;
+    }
+  }
+
+  .open > a {
+    color: $default-color;
+
+    &:hover, &:focus {
+      color: $default-color;
+    }
+  }
+}
+
+.dropdown-menu > .active > a {
+  color: $default-color;
+
+  &:hover, &:focus {
+    color: $default-color;
+  }
+}
+
+/* === background color === */
+
+.custom-carousel-nav {
+  &.right:hover, &.left:hover {
+    background-color: $default-color;
+  }
+}
+
+.dropdown-menu li {
+  &:hover, a:hover, > a:focus {
+    background-color: $default-color;
+  }
+}
+
+.dropdown-submenu:hover > a {
+  background-color: $default-color;
+}
+
+.dropdown-menu .active > a {
+  background-color: $default-color;
+
+  &:hover {
+    background-color: $default-color;
+  }
+}
+
+.pagination ul > .active > {
+  a {
+    &:hover {
+      background-color: $default-color;
+    }
+
+    background-color: $default-color;
+  }
+
+  span {
+    background-color: $default-color;
+  }
+}
+
+.flex-control-nav li a {
+  &:hover, &.active {
+    background-color: $default-color;
+  }
+}
+
+.breadcrumb {
+  background-color: $default-color;
+}
+
+/* === border color === */
+
+.pagination ul > li.active > {
+  a, span {
+    border: 1px solid $default-color;
+  }
+}
+
+a.thumbnail:hover, input[type="text"].search-form:focus {
+  border: 1px solid $default-color;
+}
+
+textarea:focus {
+  border-color: $default-color;
+}
+
+input {
+  &[type="text"]:focus, &[type="password"]:focus, &[type="datetime"]:focus, &[type="datetime-local"]:focus, &[type="date"]:focus, &[type="month"]:focus, &[type="time"]:focus, &[type="week"]:focus, &[type="number"]:focus, &[type="email"]:focus, &[type="url"]:focus, &[type="search"]:focus, &[type="tel"]:focus, &[type="color"]:focus {
+    border-color: $default-color;
+  }
+}
+
+.uneditable-input:focus, input:focus {
+  border-color: $default-color;
+}
+
+#sendmessage {
+  color: $default-color;
+}
+
+.pullquote-left {
+  border-left: 5px solid $default-color;
+}
+
+.pullquote-right {
+  border-right: 5px solid $default-color;
+}
+
+/* cta */
+
+.cta-text h2 span {
+  color: $default-color;
+}
+
+ul.clients li:hover {
+  border: 4px solid $default-color;
+}
+
+/* box */
+
+.box-bottom {
+  background: $default-color;
+
+  &:hover, &:focus {
+    text-color: $default-color;
+    background: $hover
+  }
+
+}
+
+/* buttons */
+
+.btn-dark {
+  &:hover, &:focus, &:active {
+    background: $default-color;
+    border: 1px solid $default-color;
+  }
+}
+
+.btn-theme {
+  border: 1px solid $default-color;
+  background: $default-color;
+}
+
+/* modal styled */
+
+.modal.styled .modal-header {
+  background-color: $default-color;
+}
+
+/* blog */
+
+.post-meta {
+  border-top: 4px solid $default-color;
+
+  .comments a:hover {
+    color: $default-color;
+  }
+}
+
+.widget ul.tags li a:hover {
+  background: $default-color;
+}
+
+.recent-post .text h5 a:hover {
+  color: $default-color;
+}
+
+/* fontawesome icons */
+
+.icon-square:hover, .icon-rounded:hover, .icon-circled:hover, [class^="icon-"].active, [class*=" icon-"].active, .fancybox-close:hover, .fancybox-nav:hover span {
+  background-color: $default-color;
+}
+
+/* fancybox */
+
+/* parallax c slider */
+
+.da-slide .da-link:hover {
+  background: $default-color;
+  border: 4px solid $default-color;
+}
+
+.da-dots span {
+  background: $default-color;
+}
+
+/* flexslider */
+
+
+/* Nivo slider */
+
+.nivo-directionNav a:hover {
+  background-color: $default-color;
+}
+
+.nivo-caption, .caption {
+  border-bottom: $default-color 5px solid;
+}
+
+/* footer */
+
+footer, #sub-footer {
+  background: $default-color;
+}
