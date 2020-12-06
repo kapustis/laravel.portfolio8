@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Thread;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Channel extends Model
 {
+	use HasFactory;
+
     /**
      * Don't auto-apply mass assignment protection.
      * Снятие авто-защиты от массового присвоения.

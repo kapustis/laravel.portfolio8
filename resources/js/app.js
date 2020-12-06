@@ -11,7 +11,7 @@ import Vue from 'vue';
 let authorization = require('./authorizations')
 
 Vue.prototype.authorize = function (...params) {
-    if (!window.signedIn) {
+    if (!window.Laravel.signedIn) {
         return false;
     }
 
@@ -19,10 +19,11 @@ Vue.prototype.authorize = function (...params) {
         return authorization[params[0]](params[1]);
     }
     console.log('return user')
-    return params[0](window.user);
+    return params[0](window.Laravel.user);
 };
 
-Vue.prototype.signedIn = window.signedIn;
+
+Vue.prototype.signedIn = window.Laravel.signedIn;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -34,13 +35,14 @@ Vue.prototype.signedIn = window.signedIn;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+/* todo my Vue*/
+window.events = new Vue();
 Vue.component('Flash', require('./components/Flash.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
 Vue.component('blog-view', require('./pages/Blog.vue').default);
 Vue.component('user-notifications', require('./components/UserNotifications.vue').default);
-// Vue.component('wysiwyg', require('./components/Wysiwyg.vue').default);
+Vue.component('wysiwyg', require('./components/Wysiwyg.vue').default);
 Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
 
 /**
@@ -57,4 +59,6 @@ window.flash = function (message, level = 'success') {
     window.events.$emit('flash', {message, level});
 };
 
+
 console.log("im works");
+

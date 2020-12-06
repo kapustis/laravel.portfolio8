@@ -1,4 +1,4 @@
-let user = window.user;
+let user = window.Laravel.user;
 
 module.exports = {
   owns (model, prop = 'user_id') {

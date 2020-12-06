@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\RecordsActivity;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Favorite extends Model
 {
-    use RecordsActivity;
+    use HasFactory, RecordsActivity;
     /**
      * Don't auto-apply mass assignment protection.
      * Снятие авто-защиты от массового присвоения.

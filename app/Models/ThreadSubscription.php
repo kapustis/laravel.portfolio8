@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\ThreadWasUpdate;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ThreadSubscription extends Model
 {
+	use HasFactory;
     /**
      * Don't auto-apply mass assignment protection.
      * Снятие авто-защиты от массового присвоения.

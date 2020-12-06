@@ -58,7 +58,7 @@ trait RecordsActivity
      */
     public function activity()
     {
-        return $this->morphMany('App\Model\Activity', 'subject');
+        return $this->morphMany('App\Models\Activity', 'subject');
     }
 
     /**

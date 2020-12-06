@@ -7,9 +7,11 @@ use App\Filters\ThreadFilter;
 use App\RecordsActivity;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 /**
  * @property mixed title
@@ -28,7 +30,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Thread extends Model
 {
-    use RecordsActivity;
+    use HasFactory, RecordsActivity;
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -235,7 +237,7 @@ class Thread extends Model
      */
     public function setSlugAttribute(string $value)
     {
-        if (static::whereSlug($slug = str_slug($value))->exists()) {
+        if (static::whereSlug($slug = Str::slug($value))->exists()) {
             $slug = "{$slug}-{$this->id}";
         }
         $this->attributes['slug'] = $slug;

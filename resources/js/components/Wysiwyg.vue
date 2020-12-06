@@ -10,7 +10,7 @@
     import Trix from 'trix';
 
     export default {
-        // name: "Wysiwyg",
+        name: "Wysiwyg",
         props: ['name', 'value', 'placeholder', 'shouldClear'],
         mounted() {
             this.$refs.trix.addEventListener('trix-change',e =>{
