@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
 	    setlocale(LC_TIME, config('app.locale_php'));
 
-	    View::composer('*', function ($view) {
-		    $view->with('channels', Channel::all());
-	    });
+//	    View::composer('*', function ($view) {
+//		    $view->with('channels', Channel::all());
+//	    });
 
 
 	    \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');

@@ -37,7 +37,7 @@ Route::post('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionControll
 Route::delete('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionController::class, 'destroy'])->middleware('auth');
 /** replies route **/
 Route::get('/blog/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'index']);
-Route::post('/blog/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'store']);
+Route::post('/blog/{channel}/{thread}/replies', [\App\Http\Controllers\RepliesController::class, 'store']);
 Route::patch('/replies/{reply}', [App\Http\Controllers\RepliesController::class, 'update']);
 Route::delete('/replies/{reply}', [App\Http\Controllers\RepliesController::class, 'destroy'])->name('reply.destroy');
 Route::post('/reply/{reply}/favorites', [App\Http\Controllers\FavoritesController::class, 'store']);//like post reply

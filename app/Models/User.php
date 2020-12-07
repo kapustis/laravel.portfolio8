@@ -14,39 +14,44 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
+/**
+ *@method static create(array $array)
+ **/
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+	use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-		'avatar_path','name', 'login', 'email', 'password',
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'avatar_path', 'name', 'login', 'email', 'password',
 		'confirmation_token'
-    ];
+	];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token','email'
-    ];
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password',
+		'remember_token', 'email'
+	];
 
 	/**
 	 * The attributes that should be cast to native types.
 	 * Атрибуты, которые следует приводить к собственным типам
 	 * @var array
 	 */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+	protected $casts = [
+		'email_verified_at' => 'datetime',
 		'confirmed' => 'boolean'
-    ];
+	];
+
 	/**
 	 * Mark the user's account as confirmed.
 	 * Отметить учетную запись пользователя как подтвержденную.
@@ -57,6 +62,7 @@ class User extends Authenticatable
 		$this->confirmation_token = null;
 		$this->save();
 	}
+
 	/**
 	 * получить ключ маршрутом имя
 	 * @return string
@@ -65,6 +71,7 @@ class User extends Authenticatable
 	{
 		return 'name';
 	}
+
 	/**
 	 * Выборка всех потоков, которые создавались пользователем
 	 *
@@ -128,12 +135,13 @@ class User extends Authenticatable
 	 */
 	public function getAvatarPathAttribute($avatar)
 	{
-		if($avatar){
-			return asset('storage/'.$avatar);
-		}else{
-			return asset('img/avatar.png');
+		if ($avatar) {
+			return asset('storage/' . $avatar);
 		}
+			return asset('img/avatar.png');
+
 	}
+
 	/**
 	 * Determine if the user is an administrator.
 	 * Определить, является ли пользователь администратором

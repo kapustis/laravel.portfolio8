@@ -3,7 +3,7 @@
 
 namespace App\Filters;
 
-use App\Model\User;
+use App\Models\User;
 
 //use Illuminate\Http\Request;
 
