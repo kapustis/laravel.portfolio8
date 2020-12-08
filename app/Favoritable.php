@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App;
 
-use App\Model\Favorite;
+use App\Models\Favorite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -31,7 +30,7 @@ trait Favoritable
 
     /**
      * Favorite the current reply.
-     *
+     * Добавить в избранное текущий ответ
      * @return Model
      */
     public function favorite()

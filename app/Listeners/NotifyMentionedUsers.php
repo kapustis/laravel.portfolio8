@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\ThreadReceivedNewReply;
 use App\Notifications\YouWereMentioned;
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
