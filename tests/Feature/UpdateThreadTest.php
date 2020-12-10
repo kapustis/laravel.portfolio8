@@ -19,7 +19,7 @@ class UpdateThreadTest extends TestCase
     /** Неавторизованные пользователи не могут обновлять темы **/
     function testUnauthorizedUsersMayNotUpdateThreads()
     {
-        $thread = create('App\Models\Thread', ['user_id' => create('App\Model\User')->id]);
+        $thread = create('App\Models\Thread', ['user_id' => create('App\Models\User')->id]);
         $this->patch($thread->path(), [])->assertStatus(403);
     }
 

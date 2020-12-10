@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property mixed title
+ * @property mixed body
  * @property mixed $replies
  * @property mixed $creator
  * @property mixed $channel

@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Channel;
+use App\Models\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,8 +14,8 @@ class ChannelTest extends TestCase
 
     public function test_a_channel_consists_of_threads()
     {
-        $channel = factory('App\Model\Channel')->create();
-        $thread = factory('App\Model\Thread')->create(['channel_id' => $channel->id]);
+        $channel = Channel::factory()->create();
+        $thread = Thread::factory()->create(['channel_id' => $channel->id]);
         $this->assertTrue($channel->threads->contains($thread));
     }
 }

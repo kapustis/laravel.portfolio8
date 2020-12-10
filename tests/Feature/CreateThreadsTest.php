@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 
 use App\Models\Activity;
+use App\Models\Channel;
+use App\Models\User;
 use Tests\TestCase;
 
 //use Illuminate\Foundation\Testing\WithFaker;
@@ -25,9 +27,9 @@ class CreateThreadsTest extends TestCase
     /** аутентифицированные пользователи должны сначала подтвердить свой адрес электронной почты, прежде чем создавать темы **/
     function test_authenticated_users_must_first_confirm_their_email_address_before_creating_threads()
     {
-        $user = factory('App\Model\User')->states('unconfirmed')->create();
+        $user = User::factory()->unconfirmed()->create();
         $this->signIn($user);
-        $thread = make('App\Model\Thread');
+        $thread = make('App\Models\Thread');
         $this->post(route('blog'), $thread->toArray())
             ->assertRedirect(route('blog'))
             ->assertSessionHas('flash', 'You must first confirm your email address.');
@@ -39,14 +41,14 @@ class CreateThreadsTest extends TestCase
         $response = $this->publishThread(['title' => 'Title', 'body' => 'body.']);
 
         $this->get($response->headers->get('Location'))
-            ->assertSee('Title')
+            ->assertSee('title')
             ->assertSee('body.');
     }
 
     /** для темы требуется канал-категория*/
     function test_a_thread_requires_a_channel()
     {
-        factory('App\Model\Channel', 2)->create();
+	      Channel::factory()->count(2)->create();
         $this->publishThread(['channel_id' => null])->assertSessionHasErrors('channel_id');
         $this->publishThread(['channel_id' => 999])->assertSessionHasErrors('channel_id');
     }
@@ -55,7 +57,7 @@ class CreateThreadsTest extends TestCase
     function test_a_thread_requires_a_unique_slug()
     {
         $this->signIn();
-        $thread = create('App\Model\Thread', ['title' => 'Help Me']);
+        $thread = create('App\Models\Thread', ['title' => 'Help Me']);
         $this->assertEquals('help-me', $thread->slug);
         $thread = $this->postJson(route('blog'), $thread->toArray())->json();
         $this->assertEquals("help-me-{$thread['id']}", $thread['slug']);
@@ -66,7 +68,7 @@ class CreateThreadsTest extends TestCase
     function test_a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
     {
         $this->signIn();
-        $thread = create('App\Model\Thread', ['title' => 'Help 13']);
+        $thread = create('App\Models\Thread', ['title' => 'Help 13']);
         $thread = $this->postJson(route('blog'), $thread->toArray())->json();
         $this->assertEquals("help-13-{$thread['id']}", $thread['slug']);
     }
@@ -87,7 +89,7 @@ class CreateThreadsTest extends TestCase
     function test_unauthorized_users_may_not_delete_threads()
     {
         $this->withExceptionHandling();
-        $thread = create('App\Model\Thread');
+        $thread = create('App\Models\Thread');
         $this->delete($thread->path())->assertRedirect('/login');
 
         $this->signIn();
@@ -98,8 +100,8 @@ class CreateThreadsTest extends TestCase
     function test_authorized_users_can_delete_threads()
     {
         $this->signIn();
-        $thread = create('App\Model\Thread', ['user_id' => auth()->id()]);
-        $reply = create('App\Model\Reply', ['thread_id' => $thread->id]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
+        $reply = create('App\Models\Reply', ['thread_id' => $thread->id]);
 
         $response = $this->json('DELETE', $thread->path());
         $response->assertStatus(204);
@@ -113,7 +115,8 @@ class CreateThreadsTest extends TestCase
     protected function publishThread($overrides = [])
     {
         $this->withExceptionHandling()->signIn();
-        $thread = make('App\Model\Thread', $overrides);
+        $thread = make('App\Models\Thread', $overrides);
+//        dd($thread);
         return $this->post(route('blog'), $thread->toArray());
     }
 }

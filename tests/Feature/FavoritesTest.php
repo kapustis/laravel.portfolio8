@@ -21,7 +21,7 @@ class FavoritesTest extends TestCase
         /** аутентифицированный пользователь может "лайкать" любой ответ*/
     {
         $this->signIn();
-        $reply = create('App\Model\Reply');
+        $reply = create('App\Models\Reply');
         $this->post('reply/' . $reply->id . '/favorites');
 //        dd(\App\Favorite::all());
         $this->assertCount(1, $reply->favorites);

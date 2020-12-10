@@ -16,19 +16,19 @@ class MentionUserTest extends TestCase
      */
     public function test_mentioned_users_in_a_reply_are_notified()
     {
-        $userOne = create('App\Model\User',['name' => 'UserOne']);
+        $userOne = create('App\Models\User',['name' => 'UserOne']);
         $this->signIn($userOne);
-        $userTwo = create('App\Model\User',['name' => 'user']);
-        $thread = create('App\Model\Thread');
-        $reply = make('App\Model\Reply', ['body' => '@user look at this.']);
+        $userTwo = create('App\Models\User',['name' => 'user']);
+        $thread = create('App\Models\Thread');
+        $reply = make('App\Models\Reply', ['body' => '@user look at this.']);
         $this->json('post', $thread->path() . '/replies', $reply->toArray());
         $this->assertCount(1,$userTwo->notifications);
     }
     function test_it_can_fetch_all_mentioned_users_starting_with_the_given_characters()
     {
-        create('App\Model\User', ['name' => 'UserOne']);
-        create('App\Model\User', ['name' => 'UserTwo']);
-        create('App\Model\User', ['name' => 'Admin']);
+        create('App\Models\User', ['name' => 'UserOne']);
+        create('App\Models\User', ['name' => 'UserTwo']);
+        create('App\Models\User', ['name' => 'Admin']);
 
         $results = $this->json('GET', '/api/users', ['name' => 'Use']);
 

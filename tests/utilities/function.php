@@ -1,8 +1,8 @@
 <?php
 function create($class, $attributes = [], $times = null)
 {
-		$tt = $class::factory()->count($times)->create($attributes);
-		dd($tt);
+//		$tt = $class::factory()->count($times)->create($attributes);
+
     return $class::factory()->count($times)->create($attributes);
 }
 
