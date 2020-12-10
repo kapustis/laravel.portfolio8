@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Model\Trending;
+use App\Models\Trending;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,7 +11,7 @@ class TrendingThreadsTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
         $this->trending = new Trending();

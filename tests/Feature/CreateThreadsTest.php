@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 
-use App\Model\Activity;
+use App\Models\Activity;
 use Tests\TestCase;
 
 //use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Model\Thread;
+use App\Models\Thread;
 
 class CreateThreadsTest extends TestCase
 {

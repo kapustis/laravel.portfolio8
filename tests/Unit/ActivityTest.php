@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Model\Activity;
+use App\Models\Activity;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;

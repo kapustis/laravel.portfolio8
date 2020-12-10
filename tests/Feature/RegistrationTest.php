@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Mail\PleaseConfirmYourEmail;
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
