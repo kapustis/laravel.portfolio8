@@ -14,7 +14,7 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('subject_id')->index();
             $table->string('subject_type', 50);
