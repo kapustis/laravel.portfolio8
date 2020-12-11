@@ -9,7 +9,6 @@
     {{-- Body --}}
     {!! $slot  !!}
 
-
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')

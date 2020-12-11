@@ -26,8 +26,8 @@ class RegistrationTest extends TestCase
             'name' => 'UserOne',
             'login' => 'UserOne',
             'email'=> 'UserOne@mail.com',
-            'password' => '123456',
-            'password_confirmation' => '123456'
+            'password' => '12345678',
+            'password_confirmation' => '12345678'
         ]);
         Mail::assertQueued(PleaseConfirmYourEmail::class);
     }
@@ -40,8 +40,8 @@ class RegistrationTest extends TestCase
             'name' => 'UserOne',
             'login' => 'UserOne',
             'email'=> 'UserOne@mail.com',
-            'password' => '123456',
-            'password_confirmation' => '123456'
+            'password' => '12345678',
+            'password_confirmation' => '12345678'
         ]);
         $user = User::whereName('UserOne')->first();
         $this->assertFalse($user->confirmed);

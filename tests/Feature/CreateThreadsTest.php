@@ -8,9 +8,9 @@ use App\Models\Channel;
 use App\Models\User;
 use Tests\TestCase;
 
-//use Illuminate\Foundation\Testing\WithFaker;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Thread;
+
 
 class CreateThreadsTest extends TestCase
 {
