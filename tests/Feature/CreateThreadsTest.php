@@ -39,7 +39,7 @@ class CreateThreadsTest extends TestCase
     function testAnAuthenticatedUserCanCreateNewForumThreads()
     {
         $response = $this->publishThread(['title' => 'Title', 'body' => 'body.']);
-
+//				dd($response->headers);
         $this->get($response->headers->get('Location'))
             ->assertSee('title')
             ->assertSee('body.');

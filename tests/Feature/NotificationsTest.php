@@ -28,21 +28,36 @@ class NotificationsTest extends TestCase
         $thread->addReply(['user_id' => auth()->id(), 'body' => 'Text from user']);
         $this->assertCount(0, auth()->user()->fresh()->notifications);
 
-        $thread->addReply(['user_id' => create('App\Model\User')->id, 'body' => 'Text from user']);
+        $thread->addReply(['user_id' => create('App\Models\User')->id, 'body' => 'Text from user']);
         $this->assertCount(1, auth()->user()->fresh()->notifications);
     }
 
     /** пользователь может получать свои непрочитанные уведомления */
     function test_a_user_can_fetch_their_unread_notifications()
     {
-        create(DatabaseNotification::class);
-        $this->assertCount(1, $this->getJson("/profiles/" . auth()->user()->name . "/notifications")->json());
+//        create(DatabaseNotification::class);
+//        $this->assertCount(1, $this->getJson("/profiles/" . auth()->user()->name . "/notifications")->json());
+	    $thread = create('App\Models\Thread')->subscribe();
+
+	    $thread->addReply([
+		    'user_id' => create('App\Models\User')->id,
+		    'body' => 'Some reply here'
+	    ]);
+
+	    $user = auth()->user();
+
+	    $response =  $this->getJson("/profiles/" . $user->name . "/notifications")->json();
+
+	    $this->assertCount(1,$response);
+
+
     }
 
     /** пользователь может отметить уведомление как прочитанное */
     function test_a_user_can_mark_a_notification_as_read()
     {
         create(DatabaseNotification::class);
+
         tap(auth()->user(), function ($user) {
             $this->assertCount(1, $user->unreadNotifications);
             $this->delete("/profiles/{$user->name}/notifications/" . $user->unreadNotifications->first()->id);
