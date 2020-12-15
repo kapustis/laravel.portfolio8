@@ -48,4 +48,5 @@ class Trending
     {
         Redis::del($this->cacheKey());
     }
+
 }

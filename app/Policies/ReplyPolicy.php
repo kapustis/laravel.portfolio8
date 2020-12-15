@@ -23,4 +23,5 @@ class ReplyPolicy
 
         return ! $lastReply->wasJustPublished();
     }
+
 }

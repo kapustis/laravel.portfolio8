@@ -52,4 +52,5 @@ class YouWereMentioned extends Notification
             'link' => $this->reply->path()
         ];
     }
+
 }

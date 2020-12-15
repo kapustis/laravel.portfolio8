@@ -30,4 +30,5 @@ class ThreadSubscriptionController extends Controller
     {
         $thread->unsubscribe();
     }
+
 }

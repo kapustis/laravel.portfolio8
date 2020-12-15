@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\RedirectResponse;
 
 class LanguageController extends Controller
@@ -22,4 +21,5 @@ class LanguageController extends Controller
 
         return redirect()->back();
     }
+
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -29,12 +29,14 @@ Route::patch('blog/{channel}/{thread}', [App\Http\Controllers\ThreadsController:
 Route::delete('blog/{channel}/{thread}', [App\Http\Controllers\ThreadsController::class, 'destroy']);
 Route::get('blog/{channel}', [App\Http\Controllers\ThreadsController::class, 'index']);
 Route::post('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'store'])
-	->name('locked-blog.store')->middleware('admin');
+    ->name('locked-blog.store')->middleware('admin');
 Route::delete('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'destroy'])
-	->name('locked-blog.destroy')->middleware('admin');
+    ->name('locked-blog.destroy')->middleware('admin');
+
 /** subscription route **/
 Route::post('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionController::class, 'store'])->middleware('auth');
 Route::delete('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionController::class, 'destroy'])->middleware('auth');
+
 /** replies route **/
 Route::get('/blog/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'index']);
 Route::post('/blog/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'store']);
@@ -43,11 +45,13 @@ Route::delete('/replies/{reply}', [App\Http\Controllers\RepliesController::class
 Route::post('/reply/{reply}/favorites', [App\Http\Controllers\FavoritesController::class, 'store']);//like post reply
 Route::delete('/reply/{reply}/favorites', [App\Http\Controllers\FavoritesController::class, 'destroy']);// like delete reply
 Route::post('/replies/{reply}/best', [App\Http\Controllers\BestRepliesController::class, 'store'])->name('best-replies.store');
+
 /** profiles route **/
 Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
 Route::get('/profiles/{user}/notifications', [App\Http\Controllers\UserNotificationsController::class, 'index']);
 Route::delete('/profiles/{user}/notifications/{notification}', [App\Http\Controllers\UserNotificationsController::class, 'destroy']);
 Route::get('/register/confirm', [App\Http\Controllers\Auth\RegisterConfirmationController::class, 'index'])->name('register.confirm');
+
 /** users route **/
 Route::get('api/users', [App\Http\Controllers\Api\UserController::class, 'index']);
 Route::post('api/users/{user}/avatar', [App\Http\Controllers\Api\UserAvatarController::class, 'store'])->middleware('auth')->name('avatar');

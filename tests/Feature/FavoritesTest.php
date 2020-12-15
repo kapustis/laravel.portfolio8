@@ -23,8 +23,8 @@ class FavoritesTest extends TestCase
         $this->signIn();
         $reply = create('App\Models\Reply');
         $this->post('reply/' . $reply->id . '/favorites');
-//        dd(\App\Favorite::all());
         $this->assertCount(1, $reply->favorites);
+
     }
 
     public function test_an_authenticated_user_can_favorite_a_reply_once()

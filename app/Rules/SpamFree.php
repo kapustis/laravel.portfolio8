@@ -44,4 +44,5 @@ class SpamFree implements Rule
     {
         return 'The validation error message!.';
     }
+
 }

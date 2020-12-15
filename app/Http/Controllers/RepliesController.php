@@ -32,7 +32,7 @@ class RepliesController extends Controller
      * @param Thread $thread
      * @return LengthAwarePaginator
      */
-    public function index( $channelId, Thread $thread)
+    public function index($channelId, Thread $thread)
     {
         return $thread->replies()->paginate(5);
     }
@@ -45,7 +45,7 @@ class RepliesController extends Controller
      * @param CreatePostRequest $form
      * @return ResponseFactory|Model|Application|\Illuminate\Http\Response
      */
-    public function store( $channelId, Thread $thread, CreatePostRequest $form)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
         if ($thread->locked) {
             return response('Thread is locked', 422);

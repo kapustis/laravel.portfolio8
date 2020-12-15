@@ -44,4 +44,5 @@ class Activity extends Model
                 return $activity->created_at->format('Y-m-d');
             });
     }
+
 }

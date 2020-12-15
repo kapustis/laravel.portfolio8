@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Filters;
 
 use App\Models\User;
-
-//use Illuminate\Http\Request;
 
 class ThreadFilter extends Filters
 {
@@ -43,4 +40,5 @@ class ThreadFilter extends Filters
     {
         return $this->builder->where('replies_count', 0);
     }
+
 }

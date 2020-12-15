@@ -64,7 +64,7 @@ trait RecordsActivity
     /**
      * Determine the activity type.
      * Определить тип активности
-     * @param  string $event
+     * @param string $event
      * @return string
      * @throws ReflectionException
      */
@@ -73,4 +73,5 @@ trait RecordsActivity
         $type = strtolower((new ReflectionClass($this))->getShortName());
         return "{$event}_{$type}";
     }
+
 }

@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ThreadSubscription extends Model
 {
-	use HasFactory;
+    use HasFactory;
+
     /**
      * Don't auto-apply mass assignment protection.
      * Снятие авто-защиты от массового присвоения.
@@ -20,11 +21,13 @@ class ThreadSubscription extends Model
      */
     protected $guarded = [];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function thread(){
+    public function thread()
+    {
         return $this->belongsTo(Thread::class);
     }
 
@@ -33,7 +36,9 @@ class ThreadSubscription extends Model
      *
      * @param Reply $reply
      */
-    public function notify(Reply $reply){
+    public function notify(Reply $reply)
+    {
         $this->user->notify(new ThreadWasUpdate($this->thread, $reply));
     }
+
 }

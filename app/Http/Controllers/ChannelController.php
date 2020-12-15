@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Channel;
+
 class ChannelController extends Controller
 {
     public function __construct()
@@ -31,6 +32,5 @@ class ChannelController extends Controller
 
         return back();
     }
-
 
 }

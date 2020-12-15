@@ -21,4 +21,5 @@ class ThreadPolicy
     {
         return $thread->user_id == $user->id;
     }
+
 }

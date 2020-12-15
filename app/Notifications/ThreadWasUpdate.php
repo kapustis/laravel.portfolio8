@@ -59,4 +59,5 @@ class ThreadWasUpdate extends Notification
             'link' => $this->reply->path()
         ];
     }
+
 }

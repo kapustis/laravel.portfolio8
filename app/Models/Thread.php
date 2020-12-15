@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Events\ThreadReceivedNewReply;
 use App\Filters\ThreadFilter;
-use App\RecordsActivity;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\RecordsActivity;
+
+//use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
@@ -59,9 +60,7 @@ class Thread extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'locked' => 'boolean'
-    ];
+    protected $casts = ['locked' => 'boolean'];
 
     /**
      * Boot the model.
@@ -132,6 +131,7 @@ class Thread extends Model
         return $reply;
 
     }
+
     /**
      * Mark the given reply as the best answer.
      *
@@ -209,7 +209,6 @@ class Thread extends Model
      *
      * @param User $user
      * @return bool
-     * @throws Exception
      **/
     public function hasUpdatesFor(User $user)
     {
@@ -227,7 +226,8 @@ class Thread extends Model
      *
      * @return string
      */
-    public function getRouteKeyName(){
+    public function getRouteKeyName()
+    {
         return 'slug';
     }
 
@@ -252,4 +252,5 @@ class Thread extends Model
     {
         $this->update(['locked' => true]);
     }
+
 }

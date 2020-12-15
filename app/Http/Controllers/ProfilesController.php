@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
-//use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfilesController extends Controller
@@ -24,4 +22,5 @@ class ProfilesController extends Controller
             'activities' => Activity::feed($user)
         ]);
     }
+
 }

@@ -19,4 +19,5 @@ class RegisterConfirmationController extends Controller
         $user->confirm();
         return redirect(route('blog'))->with('flash', 'Your account is now confirmed! You may post to the forum.');
     }
+
 }

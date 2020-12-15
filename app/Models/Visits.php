@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Redis;
 
 class Visits
 {
-	use HasFactory;
+    use HasFactory;
+
     private $thread;
 
     public function __construct($thread)

@@ -21,135 +21,128 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ThreadsController extends Controller
 {
-	public function __construct()
-	{
-		$this->middleware('auth')->except('index', 'show');
-	}
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
 
-	/**
-	 * Fetch all relevant threads.
-	 * Получить все соответствующие потоки
-	 * @param Channel $channel
-	 * @param ThreadFilter $filters
-	 * @return mixed
-	 */
-	public function getThreads(Channel $channel, ThreadFilter $filters)
-	{
-//        $threads = Thread::latest();
-//
-//        if ($channel->exist) {
-//            $threads->where('channel_id', $channel->id);
-//        }
-//
-//        // Pass your query builder instance to the Filters' apply() method.
-//        $filters->apply($threads);
-
-		$threads = Thread::with('channel')->with('creator')->latest()->filter($filters);
-		if ($channel->exists) {
-			$threads->where('channel_id', $channel->id);
-		}
+    /**
+     * Fetch all relevant threads.
+     * Получить все соответствующие потоки
+     * @param Channel $channel
+     * @param ThreadFilter $filters
+     * @return mixed
+     */
+    public function getThreads(Channel $channel, ThreadFilter $filters)
+    {
+        $threads = Thread::with('channel')->with('creator')->latest()->filter($filters);
+        if ($channel->exists) {
+            $threads->where('channel_id', $channel->id);
+        }
 //        dd($threads->toSql());
-		return $threads->paginate(5);
-	}
+        return $threads->paginate(5);
 
-	/**
-	 * Display a listing of the resource.
-	 * Отобразить список ресурсов.
-	 * @param Channel $channel
-	 * @param ThreadFilter $filters
-	 * @param Trending $trending
-	 * @return Factory|Application|\Illuminate\Http\Response|View
-	 */
-	public function index(Channel $channel, ThreadFilter $filters, Trending $trending)
-	{
-		$threads = $this->getThreads($channel, $filters);
-		if (\request()->wantsJson()) return $threads;
+    }
 
-		return view('blog.blog', ['threads' => $threads, 'trending' => $trending->get()]);
-	}
+    /**
+     * Display a listing of the resource.
+     * Отобразить список ресурсов.
+     * @param Channel $channel
+     * @param ThreadFilter $filters
+     * @param Trending $trending
+     * @return Factory|Application|\Illuminate\Http\Response|View
+     */
+    public function index(Channel $channel, ThreadFilter $filters, Trending $trending)
+    {
+        $threads = $this->getThreads($channel, $filters);
+        if (\request()->wantsJson()) return $threads;
 
-	/**
-	 * Show the form for creating a new resource.
-	 * Показать форму для создания нового ресурса.
-	 * @return Factory|Application|\Illuminate\Http\Response|View
-	 */
-	public function create()
-	{
-		return view('blog.create');
-	}
+        return view('blog.blog', ['threads' => $threads, 'trending' => $trending->get()]);
+        
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
-	 * @return Application|RedirectResponse|\Illuminate\Http\Response|Redirector
-	 */
-	public function store(ThreadsCreateRequest $request)
-	{
-		$data = $request->input();
-		$data = \Arr::add($data,'user_id', auth()->id()) ;
+    /**
+     * Show the form for creating a new resource.
+     * Показать форму для создания нового ресурса.
+     * @return Factory|Application|\Illuminate\Http\Response|View
+     */
+    public function create()
+    {
+        return view('blog.create');
+    }
 
-		$thread = Thread::create($data);
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Application|RedirectResponse|\Illuminate\Http\Response|Redirector
+     */
+    public function store(ThreadsCreateRequest $request)
+    {
+        $data = $request->input();
+        $data = \Arr::add($data, 'user_id', auth()->id());
 
-		if (request()->wantsJson()) {
-			return response($thread, 201);
-		}
-		return redirect($thread->path())->with('flash', 'Your thread has been published');
-	}
+        $thread = Thread::create($data);
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param $channel
-	 * @param Thread $thread
-	 * @param Trending $trending
-	 * @return Thread|Factory|Application|View
-	 */
-	public function show($channel, Thread $thread, Trending $trending)
-	{
-		if (auth()->check()) auth()->user()->read($thread);
-		$thread->increment('views');
-		$trending->push($thread);
-		return view('blog.blog_item', compact('thread'));
-	}
+        if (request()->wantsJson()) {
+            return response($thread, 201);
+        }
+        return redirect($thread->path())->with('flash', 'Your thread has been published');
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param $channel
-	 * @param Thread $thread
-	 * @return Thread
-	 * @throws AuthorizationException
-	 */
-	public function update($channel, Thread $thread)
-	{
-		$this->authorize('update', $thread);
+    /**
+     * Display the specified resource.
+     *
+     * @param $channel
+     * @param Thread $thread
+     * @param Trending $trending
+     * @return Thread|Factory|Application|View
+     */
+    public function show($channel, Thread $thread, Trending $trending)
+    {
+        if (auth()->check()) auth()->user()->read($thread);
+        $thread->increment('views');
+        $trending->push($thread);
+        return view('blog.blog_item', compact('thread'));
+    }
 
-		$thread->update(request()->validate([
-			'title' => 'required',
-			'body' => 'required'
-		]));
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $channel
+     * @param Thread $thread
+     * @return Thread
+     * @throws AuthorizationException
+     */
+    public function update($channel, Thread $thread)
+    {
+        $this->authorize('update', $thread);
 
-		return $thread;
-	}
+        $thread->update(request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]));
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param $channel
-	 * @param Thread $thread
-	 * @return ResponseFactory|Application|\Illuminate\Http\Response|Response
-	 * @throws Exception
-	 */
-	public function destroy($channel, Thread $thread)
-	{
-		$this->authorize('update', $thread);
+        return $thread;
+    }
 
-		$thread->delete();
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $channel
+     * @param Thread $thread
+     * @return ResponseFactory|Application|\Illuminate\Http\Response|Response
+     * @throws Exception
+     */
+    public function destroy($channel, Thread $thread)
+    {
+        $this->authorize('update', $thread);
 
-		if (request()->wantsJson()) {
-			return response([], 204);
-		}
-		return back();
-	}
+        $thread->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+        return back();
+    }
 }
