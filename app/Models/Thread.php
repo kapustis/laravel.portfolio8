@@ -117,7 +117,6 @@ class Thread extends Model
         return $this->hasMany(Reply::class);
     }
 
-
     /**
      * Add a reply to the thread.
      * Добавить ответ в тему
@@ -199,9 +198,7 @@ class Thread extends Model
      **/
     public function getIsSubscribedToAttribute()
     {
-        return $this->subscriptions()
-            ->where('user_id', auth()->id())
-            ->exists();
+        return $this->subscriptions()->where('user_id', auth()->id())->exists();
     }
 
     /**

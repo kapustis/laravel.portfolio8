@@ -66,9 +66,8 @@ class CreateThreadsTest extends TestCase
         $this->signIn();
         $thread = create('App\Models\Thread', ['title' => 'Help Me']);
         $this->assertEquals('help-me', $thread->slug);
-        $thread = $this->postJson(route('blog'), $thread->toArray())->json();
-
-        $this->assertEquals("help-me-{$thread['id']}", $thread['slug']);
+        $thread2 = create('App\Models\Thread', ['title' => 'Help Me']);
+        $this->assertEquals("help-me-{$thread2['id']}", $thread2['slug']);
 
     }
 
@@ -76,9 +75,9 @@ class CreateThreadsTest extends TestCase
     function test_a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
     {
         $this->signIn();
-        $thread = create('App\Models\Thread', ['title' => 'Help 13']);
-        $thread = $this->postJson(route('blog'), $thread->toArray())->json();
-        $this->assertEquals("help-13-{$thread['id']}", $thread['slug']);
+        create('App\Models\Thread', ['title' => 'Help 13']);
+        $thread2 = create('App\Models\Thread', ['title' => 'Help 13']);
+        $this->assertEquals("help-13-{$thread2['id']}", $thread2['slug']);
     }
 
     /** для темы требуется заголовок*/

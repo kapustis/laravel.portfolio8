@@ -58,7 +58,7 @@ class ThreadsController extends Controller
         if (\request()->wantsJson()) return $threads;
 
         return view('blog.blog', ['threads' => $threads, 'trending' => $trending->get()]);
-        
+
     }
 
     /**
@@ -68,7 +68,9 @@ class ThreadsController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $item = Thread::make();
+
+        return view('blog.create', compact('item'));
     }
 
     /**
@@ -81,13 +83,12 @@ class ThreadsController extends Controller
     {
         $data = $request->input();
         $data = \Arr::add($data, 'user_id', auth()->id());
-
         $thread = Thread::create($data);
 
-        if (request()->wantsJson()) {
-            return response($thread, 201);
+        if ($thread) {
+            return redirect($thread->path())->with('flash', 'Your thread has been published');
         }
-        return redirect($thread->path())->with('flash', 'Your thread has been published');
+        return back()->withErrors(['flash' => 'Save error'])->withInput();
     }
 
     /**

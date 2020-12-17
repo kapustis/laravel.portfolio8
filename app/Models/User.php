@@ -35,20 +35,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token', 'email'
-    ];
+    protected $hidden = ['password', 'remember_token', 'email'];
 
     /**
      * The attributes that should be cast to native types.
      * Атрибуты, которые следует приводить к собственным типам
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'confirmed' => 'boolean'
-    ];
+    protected $casts = ['email_verified_at' => 'datetime', 'confirmed' => 'boolean'];
 
     /**
      * Mark the user's account as confirmed.
@@ -119,10 +113,7 @@ class User extends Authenticatable
      */
     public function read($thread)
     {
-        cache()->forever(
-            $this->visitedThreadCacheKey($thread),
-            Carbon::now()
-        );
+        cache()->forever($this->visitedThreadCacheKey($thread), Carbon::now());
     }
 
     /**
