@@ -51,10 +51,7 @@ class RepliesController extends Controller
             return response('Thread is locked', 422);
         }
 
-        return $thread->addReply([
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ])->load('owner');
+        return $thread->addReply(['body' => request('body'), 'user_id' => auth()->id()])->load('owner');
     }
 
     /**
@@ -92,4 +89,5 @@ class RepliesController extends Controller
 
         return back();
     }
+
 }
