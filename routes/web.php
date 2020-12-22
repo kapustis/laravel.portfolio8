@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Blog\FavoritesController;
+use App\Http\Controllers\Blog\LockedThreadsController;
+use App\Http\Controllers\Blog\RepliesController;
 use App\Http\Controllers\Blog\ThreadsController;
 use App\Http\Controllers\Blog\ThreadSubscriptionController;
+use App\Http\Controllers\Blog\UserNotificationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +33,9 @@ Route::get('blog/{channel}/{thread}', [ThreadsController::class, 'show']);
 Route::patch('blog/{channel}/{thread}', [ThreadsController::class, 'update']);
 Route::delete('blog/{channel}/{thread}', [ThreadsController::class, 'destroy']);
 Route::get('blog/{channel}', [ThreadsController::class, 'index']);
-Route::post('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'store'])
+Route::post('locked-threads/{thread}', [LockedThreadsController::class, 'store'])
     ->name('locked-blog.store')->middleware('admin');
-Route::delete('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'destroy'])
+Route::delete('locked-threads/{thread}', [LockedThreadsController::class, 'destroy'])
     ->name('locked-blog.destroy')->middleware('admin');
 
 /** subscription route **/
@@ -39,18 +43,18 @@ Route::post('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionControll
 Route::delete('/blog/{channel}/{thread}/subscription', [ThreadSubscriptionController::class, 'destroy'])->middleware('auth');
 
 /** replies route **/
-Route::get('/blog/{channel}/{thread}/replies', [App\Http\Controllers\Blog\RepliesController::class, 'index']);
-Route::post('/blog/{channel}/{thread}/replies', [App\Http\Controllers\Blog\RepliesController::class, 'store']);
-Route::patch('/replies/{reply}', [App\Http\Controllers\Blog\RepliesController::class, 'update']);
-Route::delete('/replies/{reply}', [App\Http\Controllers\Blog\RepliesController::class, 'destroy'])->name('reply.destroy');
-Route::post('/reply/{reply}/favorites', [App\Http\Controllers\Blog\FavoritesController::class, 'store']);//like post reply
-Route::delete('/reply/{reply}/favorites', [App\Http\Controllers\Blog\FavoritesController::class, 'destroy']);// like delete reply
+Route::get('/blog/{channel}/{thread}/replies', [RepliesController::class, 'index']);
+Route::post('/blog/{channel}/{thread}/replies', [RepliesController::class, 'store']);
+Route::patch('/replies/{reply}', [RepliesController::class, 'update']);
+Route::delete('/replies/{reply}', [RepliesController::class, 'destroy'])->name('reply.destroy');
+Route::post('/reply/{reply}/favorites', [FavoritesController::class, 'store']);//like post reply
+Route::delete('/reply/{reply}/favorites', [FavoritesController::class, 'destroy']);// like delete reply
 Route::post('/replies/{reply}/best', [App\Http\Controllers\Blog\BestRepliesController::class, 'store'])->name('best-replies.store');
 
 /** profiles route **/
 Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
-Route::get('/profiles/{user}/notifications', [App\Http\Controllers\Blog\UserNotificationsController::class, 'index']);
-Route::delete('/profiles/{user}/notifications/{notification}', [App\Http\Controllers\Blog\UserNotificationsController::class, 'destroy']);
+Route::get('/profiles/{user}/notifications', [UserNotificationsController::class, 'index']);
+Route::delete('/profiles/{user}/notifications/{notification}', [UserNotificationsController::class, 'destroy']);
 Route::get('/register/confirm', [App\Http\Controllers\Auth\RegisterConfirmationController::class, 'index'])->name('register.confirm');
 
 /** users route **/

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\Thread;
 
-class LockedThreadsController extends Controller
+class LockedThreadsController extends BaseController
 {
     /**
      * Lock the given thread.
