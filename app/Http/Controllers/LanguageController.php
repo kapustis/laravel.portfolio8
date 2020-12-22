@@ -13,10 +13,8 @@ class LanguageController extends Controller
      */
     public function __invoke($locale)
     {
-//        dd($locale);
         if (array_key_exists($locale, config('locale.languages'))) {
             session()->put('locale', $locale);
-//                    dd($locale);
         }
 
         return redirect()->back();

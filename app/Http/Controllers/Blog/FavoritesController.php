@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\Reply;
 
-class FavoritesController extends Controller
+class FavoritesController extends BaseController
 {
     public function __construct()
     {

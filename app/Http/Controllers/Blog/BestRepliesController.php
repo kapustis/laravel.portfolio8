@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\Reply;
 use Illuminate\Auth\Access\AuthorizationException;
 
-class BestRepliesController extends Controller
+class BestRepliesController extends BaseController
 {
     /**
      * Mark the best reply for a thread.

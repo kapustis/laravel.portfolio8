@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
+
 
 use App\Http\Requests\ThreadsCreateRequest;
 use App\Models\Channel;
@@ -19,7 +20,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
-class ThreadsController extends Controller
+class ThreadsController extends BaseController
 {
     public function __construct()
     {
@@ -55,7 +56,9 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilter $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
-        if (\request()->wantsJson()) return $threads;
+        if (\request()->wantsJson()) {
+            return $threads;
+        }
 
         return view('blog.blog', ['threads' => $threads, 'trending' => $trending->get()]);
 

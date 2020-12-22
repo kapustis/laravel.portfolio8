@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserNotificationsController extends Controller
+class UserNotificationsController extends BaseController
 {
     /**
      * UserNotificationsController constructor.

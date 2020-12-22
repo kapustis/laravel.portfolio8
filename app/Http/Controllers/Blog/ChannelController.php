@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
 use App\Models\Channel;
 
-class ChannelController extends Controller
+class ChannelController extends BaseController
 {
     public function __construct()
     {
@@ -19,7 +19,6 @@ class ChannelController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request);
         $this->validate($request, [
             'name' => 'required|max:50',
             'slug' => 'required|max:50',

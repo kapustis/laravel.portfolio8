@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\Thread;
 use Illuminate\Http\Request;
 
-class ThreadSubscriptionController extends Controller
+class ThreadSubscriptionController extends BaseController
 {
     /**
      * Store a new thread subscription.

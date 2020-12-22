@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Reply;
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class RepliesController extends Controller
+class RepliesController extends BaseController
 {
     /**
      * Create a new RepliesController instance.
