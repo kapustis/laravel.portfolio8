@@ -4,47 +4,49 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Языковые ресурсы названий менюшек
+    | Мовні ресурси назв пунтків меню
     |--------------------------------------------------------------------------
     |
-    | Следующие языковые ресурсы используются в названиях
-    | менюшек всего вашего приложения.
-    | Вы можете свободно изменять эти языковые ресурсы в соответствии
-    | с требованиями вашего приложения.
+    | Наступні мовні ресурси використовуються в назвах
+    | пунтків меню усієї вашої програми.
+    | Ви можете вільно змінювати ці мовні ресурси відповідно до вимог
+    | вашої програми.
     |
     */
     'test' => 'Тест',
 
     'language-picker' => [
-        'language' => 'Язык',
+        'language' => 'Мова',
         /*
-         * Add the new language to this array.
-         * The key should have the same language code as the folder name.
-         * The string should be: 'Language-name-in-your-own-language (Language-name-in-English)'.
-         * Be sure to add the new language in alphabetical order.
+         * Додайте нову мову до цього масиву.
+         * Ключ повинен мати той самий код мови, що і ім'я папки.
+         * Рядок має бути: 'Language-name-in-your-own-language (Language-name-in-English)'.
+         * Обов'язково додайте нову мову в алфавітному порядку.
          */
-        'langs'    => [
-            'ar'    => 'Арабский (Arabic)',
-            'zh'    => 'Китайский (Chinese Simplified)',
-            'zh-TW' => 'Китайский (Chinese Traditional)',
-            'da'    => 'Датский (Danish)',
-            'de'    => 'Немецкий (German)',
-            'el'    => 'Греческий (Greek)',
-            'en'    => 'Английский',
-            'es'    => 'Испанский (Spanish)',
-            'fa'    => 'персидский (Persian)',
-            'fr'    => 'Французский (French)',
-            'he'    => 'иврит (Hebrew)',
-            'id'    => 'Индонезийский (Indonesian)',
-            'it'    => 'Итальянский (Italian)',
-            'ja'    => 'Японский (Japanese)',
-            'nl'    => 'Голландский (Dutch)',
-            'no'    => 'норвежский (Norwegian)',
-            'pt_BR' => 'Бразильский Португальский (Brazilian Portuguese)',
-            'ru'    => 'Русский (Russian)',
-            'sv'    => 'Шведский (Swedish)',
-            'th'    => 'Тайский (Thai)',
-            'tr'    => 'Турецкий (Turkish)',
+        'langs' => [
+            'ar' => 'Арабська (Arabic)',
+            'az' => 'Azerbaijan',
+            'zh' => 'Китайська (Chinese Simplified)',
+            'zh-TW' => 'Китайська (Chinese Traditional)',
+            'da' => 'Датська (Danish)',
+            'de' => 'Німецька (German)',
+            'el' => 'Грецька (Greek)',
+            'en' => 'Англійська (English)',
+            'es' => 'Іспанська (Spanish)',
+            'fa' => 'Персидська (Persian)',
+            'fr' => 'Французська (French)',
+            'he' => 'Іврит (Hebrew)',
+            'id' => 'Індонезійська (Indonesian)',
+            'it' => 'Італійська (Italian)',
+            'ja' => 'Японська (Japanese)',
+            'nl' => 'Голландська (Dutch)',
+            'no' => 'Норвезька (Norwegian)',
+            'pt_BR' => 'Бразильська Португальська (Brazilian Portuguese)',
+            'ru' => 'Російська (Russian)',
+            'sv' => 'Шведська (Swedish)',
+            'th' => 'Тайська (Thai)',
+            'tr' => 'Турецька (Turkish)',
+            'uk' => 'Українська (Ukrainian)',
         ],
     ],
 ];

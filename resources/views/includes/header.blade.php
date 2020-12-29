@@ -25,10 +25,15 @@
                                     <a href="{{route('profile',Auth::user())}}"> {{__('navs.frontend.user.profile')}}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{__('navs.frontend.user.logout')}}
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    >{{__('navs.frontend.user.logout')}}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                    <form id="logout-form"
+                                          action="{{ route('logout') }}"
+                                          method="POST"
+                                          style="display: none;"
+                                    >{{ csrf_field() }}</form>
                                 </li>
                             </ul>
                         </li>

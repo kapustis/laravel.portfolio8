@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ago() {
-      return moment(this.data.created_at).fromNow();
+      return moment(this.data.created_at).locale(window.default_locale).fromNow();
     },
   },
   created() {

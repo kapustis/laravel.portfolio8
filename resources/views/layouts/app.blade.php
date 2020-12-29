@@ -1,18 +1,16 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ htmlLang() }}" @langrtl dir="rtl" @endlangrtl>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- Styles -->
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
     <script>
         window.default_locale = "{{ app()->getLocale() }}";
         window.fallback_locale = "{{ app()->getLocale() }}";
         {{--window.messages = @json($messages);--}}
-            window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),'user' => Auth::user(),'signedIn' => Auth::check()]) !!};
+        window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),'user' => Auth::user(),'signedIn' => Auth::check()]) !!};
     </script>
 </head>
 <body>

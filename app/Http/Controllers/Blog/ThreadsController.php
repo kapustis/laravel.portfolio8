@@ -79,7 +79,7 @@ class ThreadsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ThreadsCreateRequest $request
      * @return Application|RedirectResponse|\Illuminate\Http\Response|Redirector
      */
     public function store(ThreadsCreateRequest $request)

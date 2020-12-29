@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Switch between the included languages
+Route::get('lang/{lang}', [\App\Http\Controllers\LocaleController::class, 'change'])->name('locale.change');
 
 Route::get('/', function () {
     return view('welcome');

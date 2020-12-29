@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_TIME, config('app.locale_php'));
 
-        View::composer('*', function ($view) {
+        View::composer('blog.create', function ($view) {
             $view->with('channels', Channel::all());
         });
 
