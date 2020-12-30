@@ -69,6 +69,22 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta"
+        ],
+        "clear-all": [
+            "@php artisan clear-compiled",
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan config:clear",
+            "composer dumpautoload -o"
+        ],
+        "cache-all": [
+            "@php artisan config:cache",
+            "@php artisan route:cache"
+        ],
+        "cc": [
+            "composer clear-all",
+            "composer cache-all"
         ]
     }
 }

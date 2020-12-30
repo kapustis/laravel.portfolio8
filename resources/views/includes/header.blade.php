@@ -1,8 +1,8 @@
 <header>
     <nav class="hed_nav">
         <ul class="nav_links">
-            <li><a href="/" class="active">Главная</a></li>
-            <li class="land"><a href="{{url('/blog')}}">Блог</a></li>
+            <li><a href="/" class="active">{{__('navs.general.home')}}</a></li>
+            <li class="land"><a href="{{url('/blog')}}">{{__('navs.general.blog')}}</a></li>
             @if (config('locale.status') && count(config('locale.languages')) > 1)
                 <li >
                     <a href="#" type="button" class="lang">
@@ -13,7 +13,6 @@
             @endif
             <li>
                 <ul>
-                    <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">{{__('navs.frontend.login')}}</a></li>
                         <li><a href="{{ route('register') }}">{{__('navs.frontend.register')}}</a></li>

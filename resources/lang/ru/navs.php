@@ -16,7 +16,7 @@ return [
 
     'general' => [
         'home' => 'Главная',
-        'contact' => 'Контакты',
+        'blog' => 'Блог',
     ],
 
     'frontend' => [
