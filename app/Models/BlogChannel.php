@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed id
  * @property mixed exist
  */
-class Channel extends Model
+class BlogChannel extends Model
 {
 	use HasFactory;
 
@@ -39,7 +39,7 @@ class Channel extends Model
      */
     public function threads()
     {
-        return $this->hasMany(Thread::class);
+        return $this->hasMany(BlogThread::class);
     }
 
 }

@@ -19,8 +19,8 @@ class MentionUserTest extends TestCase
         $userOne = create('App\Models\User',['name' => 'UserOne']);
         $this->signIn($userOne);
         $userTwo = create('App\Models\User',['name' => 'user']);
-        $thread = create('App\Models\Thread');
-        $reply = make('App\Models\Reply', ['body' => '@user look at this.']);
+        $thread = create('App\Models\BlogThread');
+        $reply = make('App\Models\BlogReply', ['body' => '@user look at this.']);
         $this->json('post', $thread->path() . '/replies', $reply->toArray());
         $this->assertCount(1,$userTwo->notifications);
     }

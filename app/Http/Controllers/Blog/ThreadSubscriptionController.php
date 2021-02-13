@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Models\Thread;
+use App\Models\BlogThread;
 use Illuminate\Http\Request;
 
 class ThreadSubscriptionController extends BaseController
@@ -11,10 +11,10 @@ class ThreadSubscriptionController extends BaseController
      * Store a new thread subscription.
      *
      * @param $channelId
-     * @param Thread $thread
+     * @param BlogThread $thread
      * @return void
      */
-    public function store($channelId , Thread $thread)
+    public function store($channelId , BlogThread $thread)
     {
         $thread->subscribe();
     }
@@ -23,10 +23,10 @@ class ThreadSubscriptionController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param $channelId
-     * @param Thread $thread
+     * @param BlogThread $thread
      * @return void
      */
-    public function destroy($channelId ,Thread $thread)
+    public function destroy($channelId , BlogThread $thread)
     {
         $thread->unsubscribe();
     }

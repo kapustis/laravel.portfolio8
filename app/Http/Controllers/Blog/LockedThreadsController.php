@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Models\Thread;
+use App\Models\BlogThread;
 
 class LockedThreadsController extends BaseController
 {
     /**
      * Lock the given thread.
      * Заблокировать данную тему.
-     * @param Thread $thread
+     * @param BlogThread $thread
      */
-    public function store(Thread $thread)
+    public function store(BlogThread $thread)
     {
         $thread->lock();
         $thread->update(['locked' => true]);
@@ -20,9 +20,9 @@ class LockedThreadsController extends BaseController
     /**
      * Unlock the given thread.
      * Разблокировать данную тему.
-     * @param Thread $thread
+     * @param BlogThread $thread
      */
-    public function destroy(Thread $thread)
+    public function destroy(BlogThread $thread)
     {
         $thread->update(['locked' => false]);
     }

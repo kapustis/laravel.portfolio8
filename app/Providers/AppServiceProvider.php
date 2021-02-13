@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Channel;
+use App\Models\BlogChannel;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, config('app.locale_php'));
 
         View::composer('blog.create', function ($view) {
-            $view->with('channels', Channel::all());
+            $view->with('channels', BlogChannel::all());
         });
 
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');

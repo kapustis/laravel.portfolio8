@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Models\Reply;
+use App\Models\BlogReply;
 
 class FavoritesController extends BaseController
 {
@@ -14,10 +14,10 @@ class FavoritesController extends BaseController
     /**
      * Store a new favorite in the database.
      * Сохранение нового избранного в базе данных
-     * @param  Reply $reply
+     * @param  BlogReply $reply
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Http\RedirectResponse
      */
-    public function store(Reply $reply)
+    public function store(BlogReply $reply)
     {
          $reply->favorite();
          return back();
@@ -26,9 +26,9 @@ class FavoritesController extends BaseController
     /**
      * Delete the favorite.
      * Удалить избранное
-     * @param Reply $reply
+     * @param BlogReply $reply
      */
-    public function destroy(Reply $reply)
+    public function destroy(BlogReply $reply)
     {
         $reply->unfavorite();
     }

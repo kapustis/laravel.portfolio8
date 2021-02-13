@@ -21,7 +21,7 @@ class NotificationsTest extends TestCase
     function test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply_that_is_by_the_current_user()
 
     {
-        $thread = create('App\Models\Thread')->subscribe();
+        $thread = create('App\Models\BlogThread')->subscribe();
         $this->assertCount(0, auth()->user()->notifications);
 
         // Then, each time a new reply is left... // Затем каждый раз, когда остается новый ответ ...
@@ -37,7 +37,7 @@ class NotificationsTest extends TestCase
     {
 //        create(DatabaseNotification::class);
 //        $this->assertCount(1, $this->getJson("/profiles/" . auth()->user()->name . "/notifications")->json());
-	    $thread = create('App\Models\Thread')->subscribe();
+	    $thread = create('App\Models\BlogThread')->subscribe();
 
 	    $thread->addReply([
 		    'user_id' => create('App\Models\User')->id,

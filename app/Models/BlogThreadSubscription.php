@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed user
  * @property mixed thread
  */
-class ThreadSubscription extends Model
+class BlogThreadSubscription extends Model
 {
     use HasFactory;
 
@@ -28,15 +28,15 @@ class ThreadSubscription extends Model
 
     public function thread()
     {
-        return $this->belongsTo(Thread::class);
+        return $this->belongsTo(BlogThread::class);
     }
 
     /**
      * Notify the related user that the thread was updated.
      *
-     * @param Reply $reply
+     * @param BlogReply $reply
      */
-    public function notify(Reply $reply)
+    public function notify(BlogReply $reply)
     {
         $this->user->notify(new ThreadWasUpdate($this->thread, $reply));
     }

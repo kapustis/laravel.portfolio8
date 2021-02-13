@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property mixed created_at
  * @property mixed body
  */
-class Reply extends Model
+class BlogReply extends Model
 {
     use HasFactory, Favoritable, RecordsActivity;
 
@@ -78,7 +78,7 @@ class Reply extends Model
      */
     public function thread()
     {
-        return $this->belongsTo(Thread::class);
+        return $this->belongsTo(BlogThread::class);
     }
 
     /**

@@ -1,2 +1,2 @@
-$threads = App\Models\Thread::factory(50)->create();
-$threads->each(function ($thread) { App\Models\Reply::factory(rand(1,11))->create(['thread_id' => $thread->id]); });
+$threads = App\Models\BlogThread::factory(50)->create();
+$threads->each(function ($thread) { App\Models\BlogReply::factory(rand(1,11))->create(['thread_id' => $thread->id]); });

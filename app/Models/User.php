@@ -71,7 +71,7 @@ class User extends Authenticatable
      */
     public function threads()
     {
-        return $this->hasMany(Thread::class)->latest();
+        return $this->hasMany(BlogThread::class)->latest();
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Authenticatable
      */
     public function lastReply()
     {
-        return $this->hasOne(Reply::class)->latest();
+        return $this->hasOne(BlogReply::class)->latest();
     }
 
     /**

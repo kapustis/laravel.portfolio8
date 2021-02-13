@@ -17,7 +17,7 @@ class CreatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('create', new \App\Models\Reply);
+        return Gate::allows('create', new \App\Models\BlogReply);
     }
 
     /**

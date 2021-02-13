@@ -2,20 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\Reply;
-use App\Models\Thread;
+use App\Models\BlogReply;
+use App\Models\BlogThread;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
-class ReplyFactory extends Factory
+class BlogReplyFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Reply::class;
+    protected $model = BlogReply::class;
 
     /**
      * Define the model's default state.
@@ -26,7 +26,7 @@ class ReplyFactory extends Factory
     {
         return [
 	        'thread_id' => function () {
-		        return Thread::factory()->create()->id;
+		        return BlogThread::factory()->create()->id;
 	        },
 	        'user_id' => function () {
 		        return User::factory()->create()->id;
