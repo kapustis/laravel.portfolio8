@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogThreadSubscriptionsTable extends Migration
+class CreateThreadSubscriptionsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBlogThreadSubscriptionsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('blog_thread_subscriptions', function (Blueprint $table) {
+		Schema::create('thread_subscriptions', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('thread_id');
@@ -21,7 +21,7 @@ class CreateBlogThreadSubscriptionsTable extends Migration
 
 			$table->foreign('thread_id')
 				->references('id')
-				->on('blog_threads')
+				->on('threads')
 				->onDelete('cascade');
 
 		});
@@ -34,6 +34,6 @@ class CreateBlogThreadSubscriptionsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('blog_thread_subscriptions');
+		Schema::dropIfExists('thread_subscriptions');
 	}
 }

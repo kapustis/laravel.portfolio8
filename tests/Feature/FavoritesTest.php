@@ -21,7 +21,7 @@ class FavoritesTest extends TestCase
         /** аутентифицированный пользователь может "лайкать" любой ответ*/
     {
         $this->signIn();
-        $reply = create('App\Models\BlogReply');
+        $reply = create('App\Models\Reply');
         $this->post('reply/' . $reply->id . '/favorites');
         $this->assertCount(1, $reply->favorites);
 
@@ -31,7 +31,7 @@ class FavoritesTest extends TestCase
         /** аутентифицированный пользователь  может "лайкнуть" только 1 раз*/
     {
         $this->signIn();
-        $reply = create('App\Models\BlogReply');
+        $reply = create('App\Models\Reply');
         try{
             $this->post('reply/' . $reply->id . '/favorites');
             $this->post('reply/' . $reply->id . '/favorites');
@@ -46,7 +46,7 @@ class FavoritesTest extends TestCase
         /** аутентифицированный пользователь может "лайкать" любой ответ*/
     {
         $this->signIn();
-        $reply = create('App\Models\BlogReply');
+        $reply = create('App\Models\Reply');
         $reply->favorite();
 
         $this->delete('reply/' . $reply->id . '/favorites');

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Requests\CreatePostRequest;
-use App\Models\BlogReply;
-use App\Models\BlogThread;
+use App\Models\Reply;
+use App\Models\Thread;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -29,10 +29,10 @@ class RepliesController extends BaseController
      * Display a listing of the resource.
      *
      * @param  $channelId
-     * @param BlogThread $thread
+     * @param Thread $thread
      * @return LengthAwarePaginator
      */
-    public function index($channelId, BlogThread $thread)
+    public function index($channelId, Thread $thread)
     {
         return $thread->replies()->paginate(5);
     }
@@ -41,11 +41,11 @@ class RepliesController extends BaseController
      * Persist a new reply.
      * Сохранить новый ответ
      * @param  $channelId
-     * @param BlogThread $thread
+     * @param Thread $thread
      * @param CreatePostRequest $form
      * @return ResponseFactory|Model|Application|\Illuminate\Http\Response
      */
-    public function store($channelId, BlogThread $thread, CreatePostRequest $form)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
         if ($thread->locked) {
             return response('Thread is locked', 422);
@@ -56,11 +56,11 @@ class RepliesController extends BaseController
 
     /**
      * Обновить существующий ответ
-     * @param BlogReply $reply
+     * @param Reply $reply
      * @return ResponseFactory|Response
      * @throws AuthorizationException
      */
-    public function update(BlogReply $reply)
+    public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
 
@@ -74,11 +74,11 @@ class RepliesController extends BaseController
 
     /**
      * Удалить данный ответ
-     * @param BlogReply $reply
+     * @param Reply $reply
      * @return ResponseFactory|Application|RedirectResponse|Response
      * @throws Exception
      */
-    public function destroy(BlogReply $reply)
+    public function destroy(Reply $reply)
     {
         $this->authorize('update', $reply);
 

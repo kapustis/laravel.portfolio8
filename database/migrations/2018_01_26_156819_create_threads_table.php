@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogThreadsTable extends Migration
+class CreateThreadsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBlogThreadsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('blog_threads', function (Blueprint $table) {
+		Schema::create('threads', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('channel_id');
@@ -30,7 +30,7 @@ class CreateBlogThreadsTable extends Migration
 			$table->timestamps();
 
 			$table->foreign('best_reply_id')
-				->references('id')->on('blog_replies')->onDelete('set null');
+				->references('id')->on('replies')->onDelete('set null');
 		});
 	}
 
@@ -41,6 +41,6 @@ class CreateBlogThreadsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('blog_threads');
+		Schema::dropIfExists('threads');
 	}
 }

@@ -12,21 +12,21 @@ class ThreadWasUpdate extends Notification
     /**
      * The thread that was updated.
      *
-     * @var \App\Models\BlogThread
+     * @var \App\Models\Thread
      */
     protected $thread;
     /**
      * The new reply.
      *
-     * @var \App\Models\BlogReply
+     * @var \App\Models\Reply
      */
     protected $reply;
 
     /**
      * Create a new notification instance.
      *
-     * @param \App\Models\BlogThread $thread
-     * @param \App\Models\BlogReply  $reply
+     * @param \App\Models\Thread $thread
+     * @param \App\Models\Reply  $reply
      */
     public function __construct($thread, $reply)
     {

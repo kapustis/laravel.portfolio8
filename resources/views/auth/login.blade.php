@@ -24,7 +24,7 @@
                     <span class="input-focus"></span>
                     <span class="input-icon">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </span>
+                        </span>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 
-use App\Models\BlogReply;
+use App\Models\Reply;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,13 +16,13 @@ class ReplyTest extends TestCase
 	/** @test */
 	public function it_has_an_owner()
 	{
-		$reply = BlogReply::factory()->create();
+		$reply = Reply::factory()->create();
 		$this->assertInstanceOf('App\Models\User', $reply->owner);
 	}
 
 	function test_it_knows_if_it_was_just_published()
 	{
-		$reply = create('App\Models\BlogReply');
+		$reply = create('App\Models\Reply');
 		$this->assertTrue($reply->wasJustPublished());
 		$reply->created_at = Carbon::now()->subDay();
 		$this->assertFalse($reply->wasJustPublished());
@@ -30,14 +30,14 @@ class ReplyTest extends TestCase
 
 	function test_it_can_detect_all_mentioned_users_in_the_body()
 	{
-		$reply = create('App\Models\BlogReply', ['body' => '@UserOne wants to talk to @UserTwo']);
+		$reply = create('App\Models\Reply', ['body' => '@UserOne wants to talk to @UserTwo']);
 		$this->assertEquals(['UserOne', 'UserTwo'], $reply->mentionedUsers());
 	}
 
 	/** "отмечен ли текущий ответ как лучший?" **/
 	function test_it_knows_if_it_is_the_best_reply()
 	{
-		$reply = create('App\Models\BlogReply');
+		$reply = create('App\Models\Reply');
 		$this->assertFalse($reply->isBest());
 		$reply->thread->update(['best_reply_id' => $reply->id]);
 		$this->assertTrue($reply->fresh()->isBest());

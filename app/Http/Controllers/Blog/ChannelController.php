@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
-use App\Models\BlogChannel;
+use App\Models\Channel;
 
 class ChannelController extends BaseController
 {
@@ -24,7 +24,7 @@ class ChannelController extends BaseController
             'slug' => 'required|max:50',
         ]);
 
-        $channel = BlogChannel::create([
+        $channel = Channel::create([
             'name' => request('name'),
             'slug' => request('slug')
         ]);

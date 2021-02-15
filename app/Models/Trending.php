@@ -19,9 +19,9 @@ class Trending
     /**
      * Push a new thread to the trending list.
      *
-     * @param BlogThread $thread
+     * @param Thread $thread
      */
-    public function push(BlogThread $thread)
+    public function push(Thread $thread)
     {
         Redis::zincrby($this->cacheKey(), 1, json_encode([
             'title' => $thread->title,

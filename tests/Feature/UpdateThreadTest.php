@@ -19,14 +19,14 @@ class UpdateThreadTest extends TestCase
     /** Неавторизованные пользователи не могут обновлять темы **/
     function testUnauthorizedUsersMayNotUpdateThreads()
     {
-        $thread = create('App\Models\BlogThread', ['user_id' => create('App\Models\User')->id]);
+        $thread = create('App\Models\Thread', ['user_id' => create('App\Models\User')->id]);
         $this->patch($thread->path(), [])->assertStatus(403);
     }
 
     /** Тема требует обновления заголовка и тела **/
     function testAThreadRequiresATitleAndBodyToBeUpdated()
     {
-        $thread = create('App\Models\BlogThread', ['user_id' => auth()->id()]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
         $this->patch($thread->path(), ['title' => 'Changed'])->assertSessionHasErrors('body');
         $this->patch($thread->path(), ['body' => 'Changed'])->assertSessionHasErrors('title');
     }
@@ -34,7 +34,7 @@ class UpdateThreadTest extends TestCase
     /** Тема может быть обновлена ее создателем **/
     function testAThreadCanBeUpdatedByItsCreator()
     {
-        $thread = create('App\Models\BlogThread', ['user_id' => auth()->id()]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
         $this->patch($thread->path(), ['title' => 'Changed', 'body' => 'Changed body.']);
         $this->assertEquals('Changed', $thread->fresh()->title);
         $this->assertEquals('Changed body.', $thread->fresh()->body);

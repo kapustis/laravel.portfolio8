@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Models\BlogReply;
+use App\Models\Reply;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class BestRepliesController extends BaseController
@@ -10,10 +10,10 @@ class BestRepliesController extends BaseController
     /**
      * Mark the best reply for a thread.
      * Отметить лучший ответ для обсуждения
-     * @param  BlogReply $reply
+     * @param  Reply $reply
      * @throws AuthorizationException
      */
-    public function store(BlogReply $reply)
+    public function store(Reply $reply)
     {
         $this->authorize('update', $reply->thread);
 

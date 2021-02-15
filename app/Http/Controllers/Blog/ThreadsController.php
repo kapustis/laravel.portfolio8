@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Blog;
 
 
 use App\Http\Requests\ThreadsCreateRequest;
-use App\Models\BlogChannel;
-use App\Models\BlogThread;
+use App\Models\Channel;
+use App\Models\Thread;
 use App\Models\Trending;
 use App\Filters\ThreadFilter;
 use Exception;
@@ -30,13 +30,13 @@ class ThreadsController extends BaseController
     /**
      * Fetch all relevant threads.
      * Получить все соответствующие потоки
-     * @param BlogChannel $channel
+     * @param Channel $channel
      * @param ThreadFilter $filters
      * @return mixed
      */
-    public function getThreads(BlogChannel $channel, ThreadFilter $filters)
+    public function getThreads(Channel $channel, ThreadFilter $filters)
     {
-        $threads = BlogThread::with('channel')->with('creator')->latest()->filter($filters);
+        $threads = Thread::with('channel')->with('creator')->latest()->filter($filters);
         if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
         }
@@ -48,12 +48,12 @@ class ThreadsController extends BaseController
     /**
      * Display a listing of the resource.
      * Отобразить список ресурсов.
-     * @param BlogChannel $channel
+     * @param Channel $channel
      * @param ThreadFilter $filters
      * @param Trending $trending
      * @return Factory|Application|\Illuminate\Http\Response|View
      */
-    public function index(BlogChannel $channel, ThreadFilter $filters, Trending $trending)
+    public function index(Channel $channel, ThreadFilter $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
         if (\request()->wantsJson()) {
@@ -71,7 +71,7 @@ class ThreadsController extends BaseController
      */
     public function create()
     {
-        $item = BlogThread::make();
+        $item = Thread::make();
 
         return view('blog.create', compact('item'));
     }
@@ -86,7 +86,7 @@ class ThreadsController extends BaseController
     {
         $data = $request->input();
         $data = \Arr::add($data, 'user_id', auth()->id());
-        $thread = BlogThread::create($data);
+        $thread = Thread::create($data);
 
         if ($thread) {
             return redirect($thread->path())->with('flash', 'Your thread has been published');
@@ -98,11 +98,11 @@ class ThreadsController extends BaseController
      * Display the specified resource.
      *
      * @param $channel
-     * @param BlogThread $thread
+     * @param Thread $thread
      * @param Trending $trending
-     * @return BlogThread|Factory|Application|View
+     * @return Thread|Factory|Application|View
      */
-    public function show($channel, BlogThread $thread, Trending $trending)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()) auth()->user()->read($thread);
         $thread->increment('views');
@@ -114,11 +114,11 @@ class ThreadsController extends BaseController
      * Update the specified resource in storage.
      *
      * @param $channel
-     * @param BlogThread $thread
-     * @return BlogThread
+     * @param Thread $thread
+     * @return Thread
      * @throws AuthorizationException
      */
-    public function update($channel, BlogThread $thread)
+    public function update($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
 
@@ -134,11 +134,11 @@ class ThreadsController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param $channel
-     * @param BlogThread $thread
+     * @param Thread $thread
      * @return ResponseFactory|Application|\Illuminate\Http\Response|Response
      * @throws Exception
      */
-    public function destroy($channel, BlogThread $thread)
+    public function destroy($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
 

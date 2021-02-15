@@ -16,7 +16,7 @@ class LockThreadsTest extends TestCase
     {
         $this->withExceptionHandling();
         $this->signIn();
-        $thread = create('App\Models\BlogThread', ['user_id' => auth()->id()]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
         $this->post(route('locked-blog.store', $thread))->assertStatus(403);
         $this->assertFalse($thread->fresh()->locked);
     }
@@ -25,7 +25,7 @@ class LockThreadsTest extends TestCase
     function testAnAdminCanLockAnyThread()
     {
         $this->signIn(User::factory()->administrator()->create());
-        $thread = create('App\Models\BlogThread', ['user_id' => auth()->id()]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
         $this->post(route('locked-blog.store', $thread));
         $this->assertTrue(!!$thread->fresh()->locked, 'Failed asserting that the thread was locked.');
     }
@@ -33,7 +33,7 @@ class LockThreadsTest extends TestCase
     function testAnAdminCanUnlockAnyThread()
     {
         $this->signIn(User::factory()->administrator()->create());
-        $thread = create('App\Models\BlogThread', ['user_id' => auth()->id(),'locked' => true]);
+        $thread = create('App\Models\Thread', ['user_id' => auth()->id(),'locked' => true]);
         $this->delete(route('locked-blog.destroy', $thread));
         $this->assertFalse($thread->fresh()->locked, 'Failed asserting that the thread was locked.');
     }
@@ -42,7 +42,7 @@ class LockThreadsTest extends TestCase
     public function testOnceLockedAThreadMayNotReceiveNewReply()
     {
         $this->signIn();
-        $thread = create('App\Models\BlogThread', ['locked' => true]);
+        $thread = create('App\Models\Thread', ['locked' => true]);
 
         $this->post($thread->path() . '/replies', [
             'user_id' => create('App\Models\User')->id,

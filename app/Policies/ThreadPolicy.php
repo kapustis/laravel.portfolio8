@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\BlogThread;
+use App\Models\Thread;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ThreadPolicy
@@ -14,10 +14,10 @@ class ThreadPolicy
      * Determine whether the user can update the thread.
      *
      * @param User $user
-     * @param BlogThread $thread
+     * @param Thread $thread
      * @return mixed
      */
-    public function update(User $user, BlogThread $thread)
+    public function update(User $user, Thread $thread)
     {
         return $thread->user_id == $user->id;
     }

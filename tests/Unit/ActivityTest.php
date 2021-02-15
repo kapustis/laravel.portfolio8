@@ -16,13 +16,13 @@ class ActivityTest extends TestCase
     public function test_it_records_activity_when_a_thread_is_created()
     {
         $this->signIn();
-        $thread = create('App\Models\BlogThread');
+        $thread = create('App\Models\Thread');
 
         $this->assertDatabaseHas('activities', [
             'type' => 'created_thread',
             'user_id' => auth()->id(),
             'subject_id' => $thread->id,
-            'subject_type' => 'App\Models\BlogThread'
+            'subject_type' => 'App\Models\Thread'
         ]);
 
         $activity = Activity::first();
@@ -32,7 +32,7 @@ class ActivityTest extends TestCase
     public function test_it_records_activity_when_a_reply_is_created()
     {
         $this->signIn();
-        $reply = create('App\Models\BlogReply');
+        $reply = create('App\Models\Reply');
         $this->assertEquals(2, Activity::count());
     }
 
@@ -40,7 +40,7 @@ class ActivityTest extends TestCase
     {
         // Given we have a thread
         $this->signIn();
-        create('App\Models\BlogThread', ['user_id' => auth()->id()],2);
+        create('App\Models\Thread', ['user_id' => auth()->id()],2);
         // And another thread from a week ago
 
         auth()->user()->activity()->first()->update(['created_at' => Carbon::now()->subWeek()]);

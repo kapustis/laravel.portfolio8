@@ -14,13 +14,13 @@ class YouWereMentioned extends Notification
     /**
      * The new reply.
      *
-     * @var \App\Models\BlogReply
+     * @var \App\Models\Reply
      */
     protected $reply;
 
     /**
      * YouWereMentioned constructor.
-     * @param \App\Models\BlogReply $reply
+     * @param \App\Models\Reply $reply
      */
     public function __construct($reply)
     {

@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
  * @method static create(array $array)
  * @method static latest()
  */
-class BlogThread extends Model
+class Thread extends Model
 {
     use HasFactory, RecordsActivity;
 
@@ -94,7 +94,7 @@ class BlogThread extends Model
      */
     public function channel()
     {
-        return $this->belongsTo(BlogChannel::class);
+        return $this->belongsTo(Channel::class);
     }
 
     /**
@@ -114,7 +114,7 @@ class BlogThread extends Model
      */
     public function replies()
     {
-        return $this->hasMany(BlogReply::class);
+        return $this->hasMany(Reply::class);
     }
 
     /**
@@ -134,9 +134,9 @@ class BlogThread extends Model
     /**
      * Mark the given reply as the best answer.
      *
-     * @param BlogReply $reply
+     * @param Reply $reply
      */
-    public function markBestReply(BlogReply $reply)
+    public function markBestReply(Reply $reply)
     {
         $this->update(['best_reply_id' => $reply->id]);
     }
@@ -156,7 +156,7 @@ class BlogThread extends Model
     /**
      *
      * @param int|null $userId
-     * @return BlogThread
+     * @return Thread
      **/
     public function subscribe($userId = null)
     {
@@ -188,7 +188,7 @@ class BlogThread extends Model
      **/
     public function subscriptions()
     {
-        return $this->hasMany(BlogThreadSubscription::class);
+        return $this->hasMany(ThreadSubscription::class);
     }
 
     /**
