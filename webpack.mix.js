@@ -11,6 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/sass/app.scss', 'public/css/frontend.css')
-
-.js('resources/js/app.js', 'public/js');
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .sass('resources/sass/app.scss', 'public/css/frontend.css');

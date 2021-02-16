@@ -6,8 +6,8 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue');
-import Vue from 'vue';
+window.Vue = require('vue').default;
+// import Vue from 'vue';
 let authorization = require('./authorizations')
 
 Vue.prototype.authorize = function (...params) {
