@@ -25,13 +25,13 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-	        'thread_id' => function () {
-		        return Thread::factory()->create()->id;
-	        },
-	        'user_id' => function () {
-		        return User::factory()->create()->id;
-	        },
-	        'body' => $this->faker->paragraph
+            'thread_id' => function () {
+                return Thread::factory()->create()->id;
+            },
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'body' => $this->faker->paragraph
         ];
     }
 }

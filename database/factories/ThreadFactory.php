@@ -24,20 +24,20 @@ class ThreadFactory extends Factory
      */
     public function definition()
     {
-    	$title = $this->faker->sentence;
+        $title = $this->faker->sentence;
         return [
-	        'user_id' => function () {
-		        return User::factory()->create()->id;
-	        },
-	        'channel_id' => function () {
-		        return Channel::factory()->create()->id;
-	        },
-	        'locked' => false,
-	        'title' => $title,
-	        'slug' => Str::slug($title),
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'channel_id' => function () {
+                return Channel::factory()->create()->id;
+            },
+            'locked' => false,
+            'title' => $title,
+            'slug' => Str::slug($title),
 //        'images' => rand(1,2).'_b.jpeg',
-	        'body' => "<div>" . $this->faker->paragraph . "</div>",
-	        'views' => 0
+            'body' => "<div>" . $this->faker->paragraph . "</div>",
+            'views' => 0
         ];
     }
 }
